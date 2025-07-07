@@ -11,17 +11,18 @@ const weatherBody = document.querySelector('.weather-body');
 const locationNotFound = document.querySelector('.location_not_found');
 
 async function checkWeather(city) {
-    const api_key = "af36e9374914139adff40cb6d55ab9e9";
+    const api_key = "94c7fee5353c5186aaacb78ec392769a";
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`;
 
     let weather_Data = await fetch(`${url}`).then(response => response.json()); // fetch always return a promise
 
     if(weather_Data.cod == `404`) {
         locationNotFound.style.display = "flex";
-        weatherBody.style.display = "flex";
+        weatherBody.style.display = "none";
         return;
     }
 
+    // console.log("API URL:", url);
     // console.log(weather_Data);
     weatherBody.style.display = "flex";
     locationNotFound.style.display = "none";
